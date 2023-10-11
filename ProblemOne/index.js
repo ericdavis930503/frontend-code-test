@@ -83,6 +83,10 @@ function mutateArray(a) {
   }
   //----------------------------------------------------------------------------//
 
+  //--- 3. Update the `mutateArray` function so that the resulting array only includes objects with a guest_type of 'guest' ---//
+  a = a.filter((item) => item['guest_type'] === "guest");
+  //----------------------------------------------------------------------------//
+
   return a;
 }
 
