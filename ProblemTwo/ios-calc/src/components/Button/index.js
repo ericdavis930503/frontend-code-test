@@ -1,9 +1,16 @@
+import { useCalcContext } from "../../context";
 import "./style.css";
 
 const Button = ({ type, value, ...props }) => {
+  const { putNumber } = useCalcContext();
   return {
     number: (
-      <button className="grey" value={value} {...props}>
+      <button
+        className="grey"
+        value={value}
+        onClick={() => putNumber(value)}
+        {...props}
+      >
         {value}
       </button>
     ),

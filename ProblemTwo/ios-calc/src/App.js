@@ -1,10 +1,13 @@
 import "./App.css";
 import Calculator from "./components/Calculator";
+import { CalcProvider } from "./context";
 
 function App() {
   return (
     <div className="App">
-      <Calculator />
+      <CalcProvider>
+        <Calculator />
+      </CalcProvider>
     </div>
   );
 }
