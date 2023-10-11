@@ -87,6 +87,10 @@ function mutateArray(a) {
   a = a.filter((item) => item['guest_type'] === "guest");
   //----------------------------------------------------------------------------//
 
+  //--- 4. Update the `mutateArray` function so the resulting array is ordered alphabetically by last and first name ---//
+  a.sort((item1, item2) => (item1['last_name'] + ' ' + item1['first_name']).localeCompare(item2['last_name'] + ' ' + item2['first_name']));
+  //----------------------------------------------------------------------------//
+  
   return a;
 }
 
