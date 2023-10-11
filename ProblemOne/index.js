@@ -75,7 +75,14 @@ function mutateArray(a) {
   // recursively flatten
   flattenObject(a);
   //----------------------------------------------------------------------------//
-  
+
+  //--- 2. Update the `mutateArray` function so that the 'some_array' attribute in each item of the mutated array is changed to the sum of the array called 'some_total' ---//
+  for (item of a) {
+    item['some_total'] = item['some_array'].reduce((acc, cur) => acc + cur, 0);
+    delete item['some_array'];
+  }
+  //----------------------------------------------------------------------------//
+
   return a;
 }
 
