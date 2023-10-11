@@ -56,6 +56,26 @@ var arr = [
 ];
 
 function mutateArray(a) {
+  //--- 1. Update the `mutateArray` function to return `a` as a flattened array ---//
+  const flattenObject = (obj) => {
+    if (typeof obj !== 'object') return; // we do not anything if obj is not an object
+    Object.keys(obj).forEach((key) => {
+      flattenObject(obj[key]); // we should update each element into a flattened one
+      if (!Array.isArray(obj) && typeof obj[key] === 'object' && !Array.isArray(obj[key])) { // if we need to flatten
+        //remove the current item & save it's data as temporary
+        let temp = obj[key];
+        delete obj[key];
+        // flatten it
+        Object.keys(temp).forEach((subKey) => {
+          obj[subKey] = temp[subKey];
+        })
+      }
+    })
+  }
+  // recursively flatten
+  flattenObject(a);
+  //----------------------------------------------------------------------------//
+  
   return a;
 }
 
