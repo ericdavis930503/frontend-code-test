@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import isNumber from "../utils/isNumber";
 import operate from "../utils/operate";
+import Big from "big.js";
 
 const CalcContext = createContext(undefined);
 
@@ -59,11 +60,50 @@ export const CalcProvider = ({ children }) => {
     [total, next, operation],
   );
 
+  const putSign = useCallback(() => {
+    if (next) {
+      setNext((-1 * parseFloat(next)).toString());
+    } else if (total) {
+      setTotal((-1 * parseFloat(total)).toString());
+    }
+  }, [next, total]);
+
+  const putPercentage = useCallback(() => {
+    if (operation && next) {
+      const result = operate(total, next, operation);
+      setTotal(Big(result).div(Big("100")).toString());
+      setNext(null);
+      setOperation(null);
+    } else if (next) {
+      setNext(Big(next).div(Big("100")).toString());
+    }
+  }, [next, total, operation]);
+
+  const clear = useCallback(() => {
+    setTotal(null);
+    setNext(null);
+    setOperation(null);
+  }, []);
+
+  const calc = useCallback(() => {
+    if (next && operation) {
+      setTotal(operate(total, next, operation));
+      setNext(null);
+      setOperation(null);
+    } else {
+      // '=' with no operation, nothing to do
+    }
+  }, [total, next, operation]);
+
   const value = {
     next,
     total,
     putNumber,
     putOperator,
+    putSign,
+    putPercentage,
+    clear,
+    calc,
   };
 
   return <CalcContext.Provider value={value}>{children}</CalcContext.Provider>;

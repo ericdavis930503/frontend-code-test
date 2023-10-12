@@ -2,7 +2,9 @@ import { useCalcContext } from "../../context";
 import "./style.css";
 
 const Button = ({ type, value, ...props }) => {
-  const { putNumber, putOperator } = useCalcContext();
+  const { putNumber, putOperator, putPercentage, putSign, calc, clear } =
+    useCalcContext();
+
   return {
     number: (
       <button
@@ -20,22 +22,22 @@ const Button = ({ type, value, ...props }) => {
       </button>
     ),
     calc: (
-      <button className="orange" {...props}>
+      <button className="orange" onClick={() => calc()} {...props}>
         =
       </button>
     ),
     sign: (
-      <button className="grey" {...props}>
+      <button className="grey" onClick={() => putSign()} {...props}>
         +/-
       </button>
     ),
     percentage: (
-      <button className="grey" {...props}>
+      <button className="grey" onClick={() => putPercentage()} {...props}>
         %
       </button>
     ),
     clean: (
-      <button className="grey" {...props}>
+      <button className="grey" onClick={() => clear()} {...props}>
         AC
       </button>
     ),
