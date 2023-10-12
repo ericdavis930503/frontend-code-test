@@ -3,8 +3,8 @@ import { useCalcContext } from "../../context";
 import "./style.css";
 
 export default function Display() {
-  const { next } = useCalcContext();
-  const result = next || 0;
+  const { next, total } = useCalcContext();
+  const result = next || total || 0;
 
   return (
     <div className="result-container">

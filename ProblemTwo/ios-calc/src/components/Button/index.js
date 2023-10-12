@@ -2,7 +2,7 @@ import { useCalcContext } from "../../context";
 import "./style.css";
 
 const Button = ({ type, value, ...props }) => {
-  const { putNumber } = useCalcContext();
+  const { putNumber, putOperator } = useCalcContext();
   return {
     number: (
       <button
@@ -15,7 +15,7 @@ const Button = ({ type, value, ...props }) => {
       </button>
     ),
     operator: (
-      <button className="orange" {...props}>
+      <button className="orange" onClick={() => putOperator(value)} {...props}>
         {value}
       </button>
     ),
