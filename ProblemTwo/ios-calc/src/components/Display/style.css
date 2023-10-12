@@ -1,0 +1,35 @@
+.result-container {
+    width: 100%;
+    height: 120px;
+}
+
+.result {
+    color: white;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 0.5em;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.result.large {
+    font-size: 3.5em;
+}
+
+.result.medium {
+    font-size: 2.8em;
+}
+
+.result.small {
+    font-size: 2.4em;
+}
+
+.result.xs {
+    font-size: 2em;
+}
+
+.result.xxs {
+    font-size: 1.5em;
+}
